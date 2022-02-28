@@ -1,0 +1,12 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "execMap": {
+    "js": "node_modules/.bin/babel-node"
+  },
+  "watch": ["src/"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json"
+}
