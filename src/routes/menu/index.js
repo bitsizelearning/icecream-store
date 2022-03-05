@@ -13,6 +13,22 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.get('/:id', (req, res, next) => {
+  try {
+    const id = req.params.id;
+    if (id < 0 || id >= menus.length) {
+      const err = new Error('Id Not Found');
+      err.status = 404;
+      throw err;
+    }
+    res.json({
+      data: menus[id],
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', (req, res, next) => {
   menus.push(req.body);
   res.json({
