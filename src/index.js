@@ -1,14 +1,19 @@
+import config from 'config';
 import express from 'express';
 import morgan from 'morgan';
+import { initializeDB } from './db';
 import errorHandler from './lib/error.handler';
 import logger from './lib/logger';
 import routes from './routes';
 
 const app = express();
-const port = 3000;
+const port = config.get('port');
 const httpReqLogFormat =
   ':method :url :status :res[content-length] - :response-time ms';
 const httpReqLogger = morgan(httpReqLogFormat, { stream: logger.stream });
+
+// connect to database
+initializeDB();
 
 // middlewares
 app.use(express.json());

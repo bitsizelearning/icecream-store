@@ -4,9 +4,9 @@
   "description": "A RESTful web service app for ice cream store ordering",
   "main": "src/index.js",
   "scripts": {
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js",
-    "start:dev": "nodemon"
+    "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./nodemon.json,./package.json,./npm-debug.log --copy-files && copyfiles -a config/* dist",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/index.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon"
   },
   "keywords": [
     "NodeJS"
@@ -18,11 +18,15 @@
     "@babel/core": "^7.16.10",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
+    "config": "^3.3.7",
     "express": "^4.17.3",
+    "mongoose": "^6.2.6",
     "morgan": "^1.10.0",
     "winston": "^3.6.0"
   }
