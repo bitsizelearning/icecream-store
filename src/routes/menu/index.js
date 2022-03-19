@@ -33,7 +33,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    menus.push(req.body);
     await Menu.create({
       name: req.body.name,
       description: req.body.description,
